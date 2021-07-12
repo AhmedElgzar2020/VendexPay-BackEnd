@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="IdentityServer4" Version="4.1.2" />
   </ItemGroup>
 
   <ItemGroup>

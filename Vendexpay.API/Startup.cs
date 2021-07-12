@@ -165,12 +165,28 @@ namespace Vendexpay.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
 
+            app.UseIdentityServer();
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.DocumentTitle = "Vendexpay - API";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{IdentityServerConfig.ApiFriendlyName} V1");
+                c.OAuthClientId(IdentityServerConfig.SwaggerClientID);
+                c.OAuthClientSecret("no_password"); //Leaving it blank doesn't work
+            });
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
         }
     }
