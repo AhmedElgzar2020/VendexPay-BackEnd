@@ -24,5 +24,7 @@ namespace Vendexpay.Core.Repository
         T GetSingleOrDefault(Expression<Func<T, bool>> predicate);
         T Get(int id);
         IEnumerable<T> GetAll();
+
+        void Complate();
     }
 }

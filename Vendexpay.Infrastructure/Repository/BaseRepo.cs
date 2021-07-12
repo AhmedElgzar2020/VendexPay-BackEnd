@@ -78,5 +78,10 @@ namespace Vendexpay.Infrastructure.Repository
         {
             return _entities.ToList();
         }
+
+        public virtual void Complate()
+        {
+            _context.SaveChanges();
+        }
     }
 }

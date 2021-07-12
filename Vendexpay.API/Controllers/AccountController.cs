@@ -17,6 +17,7 @@ using Vendexpay.Model;
 namespace Vendexpay.API.Controllers
 {
     [Authorize(AuthenticationSchemes = IdentityServerAuthenticationDefaults.AuthenticationScheme)]
+    [ApiController]
     [Route("api/[controller]")]
     public class AccountController : ControllerBase
     {
