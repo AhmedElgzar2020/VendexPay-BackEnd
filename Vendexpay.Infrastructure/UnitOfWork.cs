@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using Vendexpay.Core;
+using Vendexpay.Core.Repository;
+using Vendexpay.Infrastructure.Repository;
+using Vendexpay.Model;
 
 namespace Vendexpay.Infrastructure
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork 
     {
         readonly ApplicationDbContext _context;
-
 
 
 
@@ -16,7 +18,6 @@ namespace Vendexpay.Infrastructure
         {
             _context = context;
         }
-
 
 
 

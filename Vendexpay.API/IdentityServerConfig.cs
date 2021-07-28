@@ -11,9 +11,9 @@ namespace Vendexpay.API
 {
     public class IdentityServerConfig
     {
-        public const string ApiName = "quickapp_api";
-        public const string ApiFriendlyName = "QuickApp API";
-        public const string QuickAppClientID = "quickapp_spa";
+        public const string ApiName = "VendexPay_api";
+        public const string ApiFriendlyName = "VendexPay API";
+        public const string QuickAppClientID = "VendexPay_spa";
         public const string SwaggerClientID = "swaggerui";
 
         // Identity resources (used by UserInfo endpoint).

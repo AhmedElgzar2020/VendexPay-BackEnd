@@ -16,6 +16,10 @@ using AppPermissions = Vendexpay.Core.ApplicationPermissions;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using Vendexpay.Infrastructure.Repository;
+using Vendexpay.Core.Repository;
+using Vendexpay.Core.Service;
+using Vendexpay.Service;
 
 namespace Vendexpay.API
 {
@@ -33,7 +37,7 @@ namespace Vendexpay.API
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"], b => b.MigrationsAssembly("Vendexpay.API")));
-
+            services.AddScoped<DbContext, ApplicationDbContext>();
             // add identity
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -143,8 +147,8 @@ namespace Vendexpay.API
             // Repositories
             services.AddScoped<IUnitOfWork, HttpUnitOfWork>();
             services.AddScoped<IAccountManager, AccountManager>();
-
-            // Auth Handlers
+            services.AddScoped( typeof(IBaseService<,>), typeof(BaseService<,>));            // Auth Handlers
+            services.AddScoped( typeof(IBaseRepo<>), typeof(BaseRepo<>));            // Auth Handlers
             services.AddSingleton<IAuthorizationHandler, ViewUserAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, ManageUserAuthorizationHandler>();
             services.AddSingleton<IAuthorizationHandler, ViewRoleAuthorizationHandler>();

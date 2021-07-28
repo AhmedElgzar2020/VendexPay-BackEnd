@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,23 +10,30 @@ using Vendexpay.Core;
 using Vendexpay.Core.Repository;
 using Vendexpay.Core.Service;
 using Vendexpay.Core.VM;
+using Vendexpay.Infrastructure.Repository;
 using Vendexpay.Model;
+using Vendexpay.Service;
 
 namespace Vendexpay.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController<TVM,T> : ControllerBase where TVM : BaseVM where T:BaseEntity
+    public class BaseController<TVM, T> : Controller where TVM : BaseVM where T : BaseEntity
     {
-        private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IBaseService<T,TVM> _baseService;
+        private IMapper _mapper;
+        private IBaseService<T, TVM> _baseService;
+        protected IBaseRepo<T> _repo;
 
-        public BaseController(IMapper mapper, IUnitOfWork unitOfWork, IBaseService<T, TVM> baseService)
+        public BaseController()
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
-            _baseService = baseService;
+
+        }
+
+        protected void intiatService()
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<TVM, T>(); cfg.CreateMap<T, TVM>(); });
+            _mapper = config.CreateMapper();
+            _baseService = new BaseService<T, TVM>(_mapper, _repo);
         }
 
         [HttpGet]
@@ -35,7 +43,7 @@ namespace Vendexpay.API.Controllers
             {
                 return Ok(_baseService.GetAll());
             }
-            catch
+            catch (Exception e)
             {
                 return Problem("Error");
             }
@@ -63,7 +71,7 @@ namespace Vendexpay.API.Controllers
                 _baseService.Add(Model);
                 return Ok("Success");
             }
-            catch
+            catch (Exception ex)
             {
                 return Problem("Error");
             }
@@ -75,7 +83,7 @@ namespace Vendexpay.API.Controllers
         {
             try
             {
-                _baseService.Update(id,Model);
+                _baseService.Update(id, Model);
                 return Ok("Success");
             }
             catch

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Vendexpay.Model;
+using Vendexpay.Model.LookUps;
 
 namespace Vendexpay.Infrastructure
 {
@@ -14,7 +15,18 @@ namespace Vendexpay.Infrastructure
     {
         public int CurrentUserId { get; set; }
 
-
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<Manager> Managers { get; set; }
+        public DbSet<Office> Offices { get; set; }
+        public DbSet<BuildingType> BuildingTypes { get; set; }
+        public DbSet<Marchant> Marchants { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<CompanyType> CompanyTypes { get; set; }
+        public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Consumer> Consumers { get; set; }
+        public DbSet<Campaign> Campaigns { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vendexpay.Infrastructure;
 
 namespace Vendexpay.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210713101123_AddVendorModels")]
+    partial class AddVendorModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -254,96 +256,6 @@ namespace Vendexpay.API.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Vendexpay.Model.Campaign", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MachineId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("createdBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("modefiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("modefiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("Campaigns");
-                });
-
-            modelBuilder.Entity("Vendexpay.Model.Consumer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("CampaignId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CampignId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("createdBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("createdDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("modefiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("modefiedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CampaignId");
-
-                    b.HasIndex("VendorId");
-
-                    b.ToTable("Consumers");
-                });
-
             modelBuilder.Entity("Vendexpay.Model.Contact", b =>
                 {
                     b.Property<int>("Id")
@@ -462,7 +374,7 @@ namespace Vendexpay.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BuildingTypes");
+                    b.ToTable("buildingTypes");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.LookUps.City", b =>
@@ -791,34 +703,6 @@ namespace Vendexpay.API.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Vendexpay.Model.Campaign", b =>
-                {
-                    b.HasOne("Vendexpay.Model.Vendor", "Vendor")
-                        .WithMany()
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vendor");
-                });
-
-            modelBuilder.Entity("Vendexpay.Model.Consumer", b =>
-                {
-                    b.HasOne("Vendexpay.Model.Campaign", "Campaign")
-                        .WithMany()
-                        .HasForeignKey("CampaignId");
-
-                    b.HasOne("Vendexpay.Model.Vendor", "Vendor")
-                        .WithMany()
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Campaign");
-
-                    b.Navigation("Vendor");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Contact", b =>

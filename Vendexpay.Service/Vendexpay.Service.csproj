@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vendexpay.core\Vendexpay.Core.csproj" />
+    <ProjectReference Include="..\Vendexpay.Infrastructure\Vendexpay.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

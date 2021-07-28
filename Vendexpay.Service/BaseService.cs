@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 using Vendexpay.Core.Repository;
 using Vendexpay.Core.Service;
 using Vendexpay.Core.VM;
+using Vendexpay.Infrastructure.Repository;
 using Vendexpay.Model;
 
 namespace Vendexpay.Service
@@ -25,6 +27,7 @@ namespace Vendexpay.Service
         public void Add(TVM entity)
         {
             _baseRepo.Add(_mapper.Map<T>(entity));
+            _baseRepo.Complate();
         }
 
         public void Update(int Id,TVM model)

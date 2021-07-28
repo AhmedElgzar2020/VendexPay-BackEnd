@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Vendexpay.Infrastructure\Vendexpay.Infrastructure.csproj" />
+    <ProjectReference Include="..\Vendexpay.Service\Vendexpay.Service.csproj" />
   </ItemGroup>
 
 

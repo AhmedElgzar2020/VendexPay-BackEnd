@@ -5,13 +5,14 @@ using Vendexpay.Model;
 
 namespace Vendexpay.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Marchant")]
     [ApiController]
-    public class VendorController : BaseController<VendorVM,Vendor>
+    public class MarchantController : BaseController<MarchantVM, Marchant>
     {
-        public VendorController(IBaseRepo<Vendor> vendorRepo)
+
+        public MarchantController(IBaseRepo<Marchant> Repo) 
         {
-            base._repo = vendorRepo;
+            base._repo = Repo;
             base.intiatService();
         }
     }
