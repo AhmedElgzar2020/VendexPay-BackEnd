@@ -27,6 +27,7 @@ namespace Vendexpay.Infrastructure
         public DbSet<Country> Countries { get; set; }
         public DbSet<Consumer> Consumers { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Partener> Parteners { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }
