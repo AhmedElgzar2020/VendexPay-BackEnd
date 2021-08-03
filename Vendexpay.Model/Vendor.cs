@@ -11,6 +11,8 @@ namespace Vendexpay.Model
         public Vendor ParentVendor { get; set; }
         public ICollection<Manager> Managers { get; set; }
         public ICollection<Contract> Contracts { get; set; }
+        public ICollection<Contact> Contacts { get; set; }
+        public Marchant Marchant { get; set; }
 
     }
 }

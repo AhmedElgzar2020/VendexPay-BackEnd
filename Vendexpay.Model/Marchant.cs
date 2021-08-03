@@ -22,7 +22,7 @@ namespace Vendexpay.Model
         public int CompanyTypeId { get; set; }
         public CompanyType CompanyType { get; set; }
         public ICollection<Office> Offices { get; set; }
-        public ICollection<Contact> Contacts { get; set; }
         public Vendor Vendor { get; set; }
+        public int? officeId { get; set; }
     }
 }

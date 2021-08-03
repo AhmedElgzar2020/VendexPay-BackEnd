@@ -28,6 +28,8 @@ namespace Vendexpay.Infrastructure
         public DbSet<Consumer> Consumers { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<Partener> Parteners { get; set; }
+        public DbSet<POS> POs { get; set; }
+        public DbSet<MobilePayment> MobilePayments { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }

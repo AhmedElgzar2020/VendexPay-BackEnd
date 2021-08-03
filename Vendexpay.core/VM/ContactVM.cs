@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Vendexpay.Model
+namespace Vendexpay.Core.VM
 {
-    public class Contact:BaseEntity
+    public class ContactVM:BaseVM
     {
         public string Name { get; set; }
         public string Title { get; set; }
         public string Email { get; set; }
         public string Mobile { get; set; }
         public int VendorId { get; set; }
-        public Vendor Vendor { get; set; }
     }
 }

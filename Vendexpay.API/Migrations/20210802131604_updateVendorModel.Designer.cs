@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vendexpay.Infrastructure;
 
 namespace Vendexpay.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210802131604_updateVendorModel")]
+    partial class updateVendorModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,6 +356,9 @@ namespace Vendexpay.API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MarchantId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Mobile")
                         .HasColumnType("nvarchar(max)");
 
@@ -362,9 +367,6 @@ namespace Vendexpay.API.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("VendorId")
-                        .HasColumnType("int");
 
                     b.Property<int>("createdBy")
                         .HasColumnType("int");
@@ -380,7 +382,7 @@ namespace Vendexpay.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VendorId");
+                    b.HasIndex("MarchantId");
 
                     b.ToTable("Contacts");
                 });
@@ -570,7 +572,7 @@ namespace Vendexpay.API.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VendorId")
+                    b.Property<int?>("VendorId")
                         .HasColumnType("int");
 
                     b.Property<int>("createdBy")
@@ -643,9 +645,6 @@ namespace Vendexpay.API.Migrations
 
                     b.Property<DateTime?>("modefiedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("officeId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -987,13 +986,9 @@ namespace Vendexpay.API.Migrations
 
             modelBuilder.Entity("Vendexpay.Model.Contact", b =>
                 {
-                    b.HasOne("Vendexpay.Model.Vendor", "Vendor")
+                    b.HasOne("Vendexpay.Model.Marchant", null)
                         .WithMany("Contacts")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vendor");
+                        .HasForeignKey("MarchantId");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Contract", b =>
@@ -1016,13 +1011,9 @@ namespace Vendexpay.API.Migrations
 
             modelBuilder.Entity("Vendexpay.Model.Manager", b =>
                 {
-                    b.HasOne("Vendexpay.Model.Vendor", "Vendor")
+                    b.HasOne("Vendexpay.Model.Vendor", null)
                         .WithMany("Managers")
-                        .HasForeignKey("VendorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vendor");
+                        .HasForeignKey("VendorId");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Marchant", b =>
@@ -1115,13 +1106,13 @@ namespace Vendexpay.API.Migrations
 
             modelBuilder.Entity("Vendexpay.Model.Marchant", b =>
                 {
+                    b.Navigation("Contacts");
+
                     b.Navigation("Offices");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Vendor", b =>
                 {
-                    b.Navigation("Contacts");
-
                     b.Navigation("Contracts");
 
                     b.Navigation("Managers");

@@ -10,5 +10,7 @@ namespace Vendexpay.Model
         public string Title { get; set; }
         public string QId { get; set; }
         public string Mobile { get; set; }
+        public int VendorId { get; set; }
+        public Vendor Vendor { get; set; }
     }
 }
