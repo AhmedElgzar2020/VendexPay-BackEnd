@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vendexpay.Infrastructure;
 
 namespace Vendexpay.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210804094240_AddVendorDocumentsModel")]
+    partial class AddVendorDocumentsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,7 +295,7 @@ namespace Vendexpay.API.Migrations
                     b.HasIndex("DocumentId")
                         .IsUnique();
 
-                    b.ToTable("Balaiyas");
+                    b.ToTable("Balaiya");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.CR", b =>
@@ -347,7 +349,7 @@ namespace Vendexpay.API.Migrations
                     b.HasIndex("DocumentId")
                         .IsUnique();
 
-                    b.ToTable("CRs");
+                    b.ToTable("CR");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Campaign", b =>
@@ -424,7 +426,7 @@ namespace Vendexpay.API.Migrations
                     b.HasIndex("DocumentId")
                         .IsUnique();
 
-                    b.ToTable("ComputerCards");
+                    b.ToTable("ComputerCard");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.ComputerCardAuthorizer", b =>
@@ -465,7 +467,7 @@ namespace Vendexpay.API.Migrations
 
                     b.HasIndex("DocumentId");
 
-                    b.ToTable("ComputerCardAuthorizers");
+                    b.ToTable("ComputerCardAuthorizer");
                 });
 
             modelBuilder.Entity("Vendexpay.Model.Consumer", b =>

@@ -58,5 +58,10 @@ namespace Vendexpay.Service
         {
             return _mapper.Map<IEnumerable  <T>, List<TVM>>(_baseRepo.GetAll());
         }
+
+        public void AddRange(List<TVM> entities)
+        {
+            _baseRepo.AddRange(_mapper.Map< List < TVM > ,IEnumerable <T>>(entities));
+        }
     }
 }

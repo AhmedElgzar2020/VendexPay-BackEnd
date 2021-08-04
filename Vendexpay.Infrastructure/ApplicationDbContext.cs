@@ -30,6 +30,11 @@ namespace Vendexpay.Infrastructure
         public DbSet<Partener> Parteners { get; set; }
         public DbSet<POS> POs { get; set; }
         public DbSet<MobilePayment> MobilePayments { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<CR> CRs { get; set; }
+        public DbSet<Balaiya> Balaiyas { get; set; }
+        public DbSet<ComputerCard> ComputerCards { get; set; }
+        public DbSet<ComputerCardAuthorizer> ComputerCardAuthorizers { get; set; }
 
         public ApplicationDbContext(DbContextOptions options) : base(options)
         { }

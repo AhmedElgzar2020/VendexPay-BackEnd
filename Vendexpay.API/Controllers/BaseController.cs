@@ -77,6 +77,21 @@ namespace Vendexpay.API.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("AddRange")]
+        public IActionResult Post([FromBody] List<TVM> Model)
+        {
+            try
+            {
+                _baseService.AddRange(Model);
+                return Ok("Success");
+            }
+            catch (Exception ex)
+            {
+                return Problem("Error");
+            }
+        }
+
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] TVM Model)

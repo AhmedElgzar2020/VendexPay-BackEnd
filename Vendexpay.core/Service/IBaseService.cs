@@ -14,6 +14,7 @@ namespace Vendexpay.Core.Service
         List<TVM> GetAll();
         List<TVM> Find(Expression<Func<T, bool>> predicate);
         void Add(TVM entity);
+        void AddRange(List<TVM> entities);
         void Update(int Id, TVM model);
         void Delete(int Id);
 

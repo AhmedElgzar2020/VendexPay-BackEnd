@@ -13,6 +13,7 @@ namespace Vendexpay.Model
         public ICollection<Contract> Contracts { get; set; }
         public ICollection<Contact> Contacts { get; set; }
         public Marchant Marchant { get; set; }
+        public Document Document { get; set; }
 
     }
 }
